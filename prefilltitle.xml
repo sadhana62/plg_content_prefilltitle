@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="upgrade">
+	<name>PLG_CONTENT_PREFILLTITLE</name>
+	<author>Sadhana Shrivastava</author>
+	<creationDate>2026-03-27</creationDate>
+	<copyright>(C) 2026</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>PLG_CONTENT_PREFILLTITLE_XML_DESCRIPTION</description>
+
+	<namespace path="src">Joomla\Plugin\Content\Prefilltitle</namespace>
+
+	<files>
+		<folder plugin="prefilltitle">services</folder>
+		<folder>src</folder>
+		<folder>media</folder>
+		<folder>language</folder>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/plg_content_prefilltitle.ini</language>
+		<language tag="en-GB">en-GB/plg_content_prefilltitle.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="default_title"
+					type="text"
+					label="PLG_CONTENT_PREFILLTITLE_DEFAULT_TITLE_LABEL"
+					description="PLG_CONTENT_PREFILLTITLE_DEFAULT_TITLE_DESC"
+					default=""
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
