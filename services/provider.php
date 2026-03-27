@@ -15,15 +15,10 @@ return new class () implements ServiceProviderInterface {
 		$container->set(
 			PluginInterface::class,
 			function (Container $container) {
-				$plugin = new Prefilltitle(
+				return new Prefilltitle(
 					$container->get(DispatcherInterface::class),
 					(array) PluginHelper::getPlugin('content', 'prefilltitle')
 				);
-
-				$plugin->setApplication($container->get(\Joomla\CMS\Application\CMSApplicationInterface::class));
-				$plugin->setDatabase($container->get(\Joomla\Database\DatabaseInterface::class));
-
-				return $plugin;
 			}
 		);
 	}

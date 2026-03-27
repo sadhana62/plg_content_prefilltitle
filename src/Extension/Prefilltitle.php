@@ -5,8 +5,9 @@ namespace Joomla\Plugin\Content\Prefilltitle\Extension;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Form\Form;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Event\Model\PrepareFormEvent;
+use Joomla\CMS\Event\Plugin\AjaxEvent;
 use Joomla\Event\SubscriberInterface;
 
 final class Prefilltitle extends CMSPlugin implements SubscriberInterface
@@ -21,9 +22,10 @@ final class Prefilltitle extends CMSPlugin implements SubscriberInterface
 		];
 	}
 
-	public function onContentPrepareForm(Form $form, $data): void
+	public function onContentPrepareForm(PrepareFormEvent $event): void
 	{
 		$app = Factory::getApplication();
+		$form = $event->getForm();
 
 		if (!$app->isClient('administrator')) {
 			return;
@@ -34,20 +36,19 @@ final class Prefilltitle extends CMSPlugin implements SubscriberInterface
 		}
 
 		$document = $app->getDocument();
-		$wa = $document->getWebAssetManager();
-
-		$wa->registerAndUseScript(
-			'plg_content_prefilltitle.admin',
-			'plg_content_prefilltitle/admin-prefilltitle.js',
+		$document->addScript(
+			'../media/plg_content_prefilltitle/js/admin-prefilltitle.js',
 			[],
 			['type' => 'module']
 		);
 	}
 
-	public function onAjaxPrefilltitle()
+	public function onAjaxPrefilltitle(AjaxEvent $event): void
 	{
-		return [
+		$event->addResult([
 			'title' => (string) $this->params->get('default_title', '')
-		];
+		]);
 	}
 }
+
+?>
