@@ -2,6 +2,14 @@
 
 Joomla content plugin that prefills the article title on new article creation using a plugin parameter fetched through `com_ajax`.
 
+## Features
+
+- Adds a plugin parameter to define a default title
+- Loads only in the administrator article form
+- Uses `com_ajax` to retrieve the configured value
+- Prefills the title field only for new articles
+- Does not overwrite an already entered title
+
 ## Installation
 
 1. Download the repository as ZIP
@@ -15,10 +23,9 @@ Joomla content plugin that prefills the article title on new article creation us
 3. Set a value for **Default title**
 4. Go to **Content → Articles → New**
 
-If the title field is empty, it will be automatically filled with the configured value.
+The title field will be automatically filled with the configured value.
 
 ## Notes
 
-- Runs only in administrator article form
-- Applies only to new articles
-- Does not overwrite an already filled title
+- Built using the Joomla modern plugin structure
+- Intended as the Joomla GSoC 2026 test task submission
